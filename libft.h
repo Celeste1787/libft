@@ -6,7 +6,7 @@
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 19:14:17 by adovleto          #+#    #+#             */
-/*   Updated: 2021/11/25 20:27:14 by adovleto         ###   ########.fr       */
+/*   Updated: 2021/11/26 17:57:27 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stddef.h>
+# include <stdlib.h>
 
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);

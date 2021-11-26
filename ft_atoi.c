@@ -1,30 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 20:27:37 by adovleto          #+#    #+#             */
-/*   Updated: 2021/11/26 18:43:55 by adovleto         ###   ########.fr       */
+/*   Created: 2021/11/26 16:53:50 by adovleto          #+#    #+#             */
+/*   Updated: 2021/11/26 18:25:44 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+static int	ft_isspace(char c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
+}
+
+int	ft_atoi(const char *nptr)
 {
 	size_t	i;
+	int		nbr;
+	int		ng;
 
 	i = 0;
-	if (size > 0)
+	nbr = 0;
+	ng = 1;
+	while (ft_isspace(nptr[i]))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		while (i < size - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		if (nptr[i] == '-')
+			ng = -1;
+		i++;
 	}
-	return (ft_strlen(src));
+	while (ft_isdigit(nptr[i]))
+	{
+		nbr = nbr * 10 + nptr[i] - 48;
+		i++;
+	}
+	return (nbr * ng);
 }
