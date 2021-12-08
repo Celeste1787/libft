@@ -6,7 +6,7 @@
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 15:40:11 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/08 17:37:08 by adovleto         ###   ########.fr       */
+/*   Updated: 2021/12/08 18:41:55 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ t_list	*ft_lstlast(t_list *lst)
 		}
 		last = lst;
 	}
-	return (lst);
+	return (last);
 }

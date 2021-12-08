@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:43:32 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/08 19:09:28 by adovleto         ###   ########.fr       */
+/*   Created: 2021/12/08 18:50:01 by adovleto          #+#    #+#             */
+/*   Updated: 2021/12/08 19:23:44 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*storage;
+	t_list	*newlst;
 
-	if (lst)
-	{
-		storage = lst->next;
-		del(lst->content);
-		free(lst);
-		lst = storage;
+	while (lst)
+	{	
+		newlst = malloc(sizeof(t_list));
+		if (!newlst)
+		{
+			del(newlst);
+			free(newlst);
+			return (NULL);
+		}
+		newlst = f(lst->content);
+		lst = lst->next;
 	}
+	return (newlst);
 }
