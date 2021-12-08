@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 16:53:50 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/07 14:27:33 by adovleto         ###   ########.fr       */
+/*   Created: 2021/12/07 17:01:56 by adovleto          #+#    #+#             */
+/*   Updated: 2021/12/08 11:55:03 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(char c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
+	unsigned int	i;
+	char			*str;
 
-int	ft_atoi(const char *nptr)
-{
-	size_t	i;
-	int		nbr;
-	int		ng;
-
+	if (!s || !f)
+		return (NULL);
 	i = 0;
-	nbr = 0;
-	ng = 1;
-	while (ft_isspace(nptr[i]))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (NULL);
+	while (s[i])
 	{
-		if (nptr[i] == '-')
-			ng = -1;
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	while (ft_isdigit(nptr[i]))
-	{
-		nbr = nbr * 10 + nptr[i] - 48;
-		i++;
-	}
-	return (nbr * ng);
+	str[i] = '\0';
+	return (str);
 }

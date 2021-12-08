@@ -1,45 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 16:53:50 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/07 14:27:33 by adovleto         ###   ########.fr       */
+/*   Created: 2021/12/07 12:27:21 by adovleto          #+#    #+#             */
+/*   Updated: 2021/12/07 12:53:30 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(char c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	index;
+	size_t	index2;
+	char	*fusion;
 
-int	ft_atoi(const char *nptr)
-{
-	size_t	i;
-	int		nbr;
-	int		ng;
-
-	i = 0;
-	nbr = 0;
-	ng = 1;
-	while (ft_isspace(nptr[i]))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	index = 0;
+	index2 = 0;
+	fusion = malloc(sizeof(char) * (s1_len + s2_len) + 1);
+	if (!fusion)
+		return (NULL);
+	while (s1[index])
 	{
-		if (nptr[i] == '-')
-			ng = -1;
-		i++;
+		fusion[index] = s1[index];
+		index++;
 	}
-	while (ft_isdigit(nptr[i]))
+	while (s2[index2])
 	{
-		nbr = nbr * 10 + nptr[i] - 48;
-		i++;
+		fusion[index++] = s2[index2++];
 	}
-	return (nbr * ng);
+	fusion[index] = '\0';
+	return (fusion);
 }

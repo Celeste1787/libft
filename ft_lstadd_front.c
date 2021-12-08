@@ -1,45 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 16:53:50 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/07 14:27:33 by adovleto         ###   ########.fr       */
+/*   Created: 2021/12/08 14:43:34 by adovleto          #+#    #+#             */
+/*   Updated: 2021/12/08 17:36:48 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(char c)
+void	ft_lstadd_front(t_list **alst, t_list *new)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	size_t	i;
-	int		nbr;
-	int		ng;
-
-	i = 0;
-	nbr = 0;
-	ng = 1;
-	while (ft_isspace(nptr[i]))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (*alst)
 	{
-		if (nptr[i] == '-')
-			ng = -1;
-		i++;
+		new->next = *alst;
 	}
-	while (ft_isdigit(nptr[i]))
-	{
-		nbr = nbr * 10 + nptr[i] - 48;
-		i++;
-	}
-	return (nbr * ng);
+	*alst = new;
 }

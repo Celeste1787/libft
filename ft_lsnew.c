@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lsnew.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 16:53:50 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/07 14:27:33 by adovleto         ###   ########.fr       */
+/*   Created: 2021/12/08 13:25:18 by adovleto          #+#    #+#             */
+/*   Updated: 2021/12/08 15:36:10 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(char c)
+t_list	*ft_lstnew(void *content)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
+	t_list	*value;
 
-int	ft_atoi(const char *nptr)
-{
-	size_t	i;
-	int		nbr;
-	int		ng;
-
-	i = 0;
-	nbr = 0;
-	ng = 1;
-	while (ft_isspace(nptr[i]))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			ng = -1;
-		i++;
-	}
-	while (ft_isdigit(nptr[i]))
-	{
-		nbr = nbr * 10 + nptr[i] - 48;
-		i++;
-	}
-	return (nbr * ng);
+	value = malloc(sizeof(t_list));
+	if (!value)
+		return (NULL);
+	value->content = content;
+	value->next = NULL;
+	return (value);
 }

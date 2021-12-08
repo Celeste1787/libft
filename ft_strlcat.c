@@ -6,18 +6,20 @@
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 15:08:39 by adovleto          #+#    #+#             */
-/*   Updated: 2021/11/26 18:44:38 by adovleto         ###   ########.fr       */
+/*   Updated: 2021/12/07 14:14:20 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strnlen(const char *s, size_t maxlen)
+static int	ft_strnlen(const char *s, size_t maxlen)
 {
-	size_t	len;
+	static int	len;
+	static int	maxlen2;
 
+	maxlen2 = maxlen;
 	len = 0;
-	while (len < maxlen)
+	while (len < maxlen2)
 	{
 		len++;
 		s++;

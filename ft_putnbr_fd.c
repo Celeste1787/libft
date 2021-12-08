@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 16:53:50 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/07 14:27:33 by adovleto         ###   ########.fr       */
+/*   Created: 2021/12/08 12:51:32 by adovleto          #+#    #+#             */
+/*   Updated: 2021/12/08 13:08:06 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(char c)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
+	long int	tmpnb;
 
-int	ft_atoi(const char *nptr)
-{
-	size_t	i;
-	int		nbr;
-	int		ng;
-
-	i = 0;
-	nbr = 0;
-	ng = 1;
-	while (ft_isspace(nptr[i]))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	tmpnb = (long int) n;
+	if (tmpnb < 0)
 	{
-		if (nptr[i] == '-')
-			ng = -1;
-		i++;
+		tmpnb *= -1;
+		ft_putchar_fd('-', fd);
 	}
-	while (ft_isdigit(nptr[i]))
+	if (tmpnb >= 0 && tmpnb <= 9)
+		ft_putchar_fd(tmpnb + 48, fd);
+	if (tmpnb > 9)
 	{
-		nbr = nbr * 10 + nptr[i] - 48;
-		i++;
+		ft_putnbr_fd(tmpnb / 10, fd);
+		ft_putchar_fd((tmpnb % 10) + 48, fd);
 	}
-	return (nbr * ng);
 }
