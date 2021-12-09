@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 14:33:49 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/09 16:35:31 by adovleto         ###   ########.fr       */
+/*   Created: 2021/12/07 11:51:06 by adovleto          #+#    #+#             */
+/*   Updated: 2021/12/07 12:27:35 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	char	*newchar;
+	size_t	i;
+
+	newchar = malloc(len * sizeof(char));
+	i = 0;
+	if (!newchar)
+		return (NULL);
+	while (len - 1 > 0)
+	{
+		newchar[i++] = s[start++];
+		len--;
+	}
+	newchar[i] = '\0';
+	return (newchar);
 }

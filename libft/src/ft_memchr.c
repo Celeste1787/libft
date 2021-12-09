@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 14:33:49 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/09 16:35:31 by adovleto         ###   ########.fr       */
+/*   Created: 2021/11/26 15:50:11 by adovleto          #+#    #+#             */
+/*   Updated: 2021/12/08 16:12:35 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+void	*memchr(const void *s, int c, size_t n)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	unsigned char	*str;
+
+	str = (unsigned char *) s;
+	while (n--)
+	{
+		if (*str == c)
+			return (str);
+		str++;
+	}
+	return (NULL);
 }
