@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: celeste <celeste@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 18:50:01 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/08 19:23:44 by adovleto         ###   ########.fr       */
+/*   Updated: 2021/12/20 20:36:40 by celeste          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,24 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*newlst;
 
-	while (lst)
-	{	
-		newlst = malloc(sizeof(t_list));
-		if (!newlst)
-		{
-			del(newlst);
-			free(newlst);
-			return (NULL);
+	newlst = ft_lstnew(f(lst->content));
+	if (!newlst)
+	{
+		ft_lstclear(&newlst, del);
+		return (NULL);
+	}
+	if (lst)
+	{
+		while (lst)
+		{	
+			newlst = ft_lstnew(f(lst->content));
+			if(!newlst)
+			{
+				ft_lstclear(&newlst, del);
+				return (NULL);
+			}
+			lst = lst->next;
 		}
-		newlst = f(lst->content);
-		lst = lst->next;
 	}
 	return (newlst);
 }
