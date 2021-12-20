@@ -6,7 +6,7 @@
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 15:50:11 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/09 16:32:44 by adovleto         ###   ########.fr       */
+/*   Updated: 2021/12/20 13:49:39 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*str;
+	char	*str;
+	int		i;
 
-	str = (unsigned char *) s;
+	str = (char *) s;
+	i = 0;
 	while (n--)
 	{
-		if (*str == (char) c)
-			return (str);
-		str++;
+		if (str[i] == (char) c)
+			return (str + i);
+		i++;
 	}
-	return (NULL);
+	return (0);
 }
