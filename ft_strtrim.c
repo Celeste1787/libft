@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: celeste <celeste@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 12:54:01 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/07 16:19:44 by adovleto         ###   ########.fr       */
+/*   Updated: 2021/12/15 12:19:01 by celeste          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,41 +26,55 @@ static int	ft_charsetcheck(char const kar, char const *set)
 	return (0);
 }
 
-static int	ft_charcount(char const *s1, char const *set)
+static int	ft_findstart(char const *s1, char const *set)
 {
-	static int	charcount;
-	size_t		s1_len;
+	int	i;
 
-	charcount = 0;
-	s1_len = ft_strlen(s1);
-	if (ft_charsetcheck(s1[0], set))
-		charcount++;
-	if (ft_charsetcheck(s1[s1_len - 1], set))
-		charcount++;
-	return (s1_len - charcount);
+	i = 0;
+	while (s1[i])
+	{
+		while (s1[i] && ft_charsetcheck(s1[i], set))
+			i++;
+		break;
+	}
+	return (i);
+}
+
+static int 	ft_findend(char const *s1, char const *set, int i)
+{
+	int	j;
+
+	j = ft_strlen(s1);
+	if (i == j)
+		return (0);
+	while (j > i)
+	{
+		while (j > 0 && ft_charsetcheck(s1[j], set))
+			j--;
+		break;
+	}
+	return (j - i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
-{
-	size_t	s1_final;
-	size_t	index;
-	size_t	index2;
+{	int		start;
+	int		end;
+	int		size;
+	int		i;
 	char	*trimmed;
 
+	start = ft_findstart(s1, set);
+	end = ft_findend(s1, set, start);
+	size = ft_strlen(s1) - (start + end);
+	i = 0;
 	if (!set || !s1)
 		return (NULL);
-	s1_final = ft_charcount(s1, set);
-	index = 0;
-	index2 = 0;
-	trimmed = malloc(sizeof(char) * s1_final + 1);
+	trimmed = malloc(sizeof(char) * size + 1);
 	if (!trimmed)
 		return (NULL);
-	if (ft_charsetcheck(s1[0], set))
-		index++;
-	while (s1_final--)
+	while (size--)
 	{
-		trimmed[index2++] = s1[index++];
+		trimmed[i] = s1[start + i];
 	}
-	trimmed[index2] = '\0';
 	return (trimmed);
 }

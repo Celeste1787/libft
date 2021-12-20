@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: celeste <celeste@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:22:01 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/07 17:01:13 by adovleto         ###   ########.fr       */
+/*   Updated: 2021/12/15 12:27:38 by celeste          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	ft_digitsize(int n)
 	static int	digitsize;
 
 	digitsize = 0;
+	if (n == 0)
+		return (1);
 	while (n != 0)
 	{
 		n /= 10;
