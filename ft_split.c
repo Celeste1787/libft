@@ -24,6 +24,8 @@ static int	ft_charcount(char const *s, char c, size_t index)
 	static int	charcount;
 
 	charcount = 0;
+	while (s[index] && ft_charcheck(s[index], c))
+		index++;
 	while (s[index] && !ft_charcheck(s[index], c))
 	{
 		charcount++;
@@ -53,7 +55,7 @@ static int	ft_wordcount(char const *s, char c)
 	return (wc);
 }
 
-char	*ft_strndup(char const *s, int size, size_t start)
+static char	*ft_strndup(char const *s, int size, size_t start)
 {
 	static int		j;
 	char			*p;
@@ -80,6 +82,8 @@ char	**ft_split(char const *s, char c)
 
 	index = 0;
 	v = 0;
+	if (!s)
+		return (NULL);
 	splitter = malloc(sizeof(char *) * (ft_wordcount(s, c) + 1));
 	if (!splitter)
 		return (NULL);

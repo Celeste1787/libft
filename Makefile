@@ -66,7 +66,7 @@ CC = gcc
 
 RM = rm -f
 
-INC_DIR = ./
+INC_DIR = includes
 
 CFLAGS =  -Wall -Wextra -Werror
 
