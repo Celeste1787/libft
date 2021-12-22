@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: celeste <celeste@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:22:01 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/15 12:27:38 by celeste          ###   ########.fr       */
+/*   Updated: 2021/12/22 18:42:39 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_digitsize(int n)
 	return (digitsize);
 }
 
-char	*ft_nitoa(int n)
+static char	*ft_nitoa(int n)
 {
 	long int	tmpn;
 	int			iter;

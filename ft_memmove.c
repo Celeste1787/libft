@@ -6,7 +6,7 @@
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:30:58 by adovleto          #+#    #+#             */
-/*   Updated: 2021/11/25 20:25:33 by adovleto         ###   ########.fr       */
+/*   Updated: 2021/12/22 16:24:13 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	tmpdest = (unsigned char *) dest;
 	tmpsrc = (unsigned char *) src;
+	if (!dest && !src)
+		return (NULL);
 	if (n == 0)
 		return (dest);
 	if (dest > src)

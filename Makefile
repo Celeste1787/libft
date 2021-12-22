@@ -6,7 +6,7 @@
 #    By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 13:21:50 by adovleto          #+#    #+#              #
-#    Updated: 2021/12/20 16:05:48 by adovleto         ###   ########.fr        #
+#    Updated: 2021/12/22 18:36:43 by adovleto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,18 +60,18 @@ BONUS = ft_lstnew.c	\
 
 OBJS := ${SRCS:.c=.o}
 
+HEADER := libft.h
+
 BONUSOBJS := ${BONUS:.c=.o}
 
 CC = gcc
 
 RM = rm -f
 
-INC_DIR = includes
-
 CFLAGS =  -Wall -Wextra -Werror
 
-.c.o:
-	${CC} ${CFLAGS} -c -I ${INC_DIR} $< -o ${<:.c=.o}
+%.o:%.c ${HEADER}
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 all: $(NAME)
 
@@ -83,10 +83,9 @@ bonus: ${OBJS} ${BONUSOBJS}
 
 clean: 
 	${RM} ${OBJS} ${BONUSOBJS}
-	@echo "\033[1;32m Objects have been deleted"
+
 fclean: clean
 	@${RM} $(NAME) 
-	@echo " ${NAME} have been deleted"
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: adovleto <adovleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:26:39 by adovleto          #+#    #+#             */
-/*   Updated: 2021/12/07 16:21:21 by adovleto         ###   ########.fr       */
+/*   Updated: 2021/12/22 18:44:25 by adovleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,14 @@ static int	ft_wordcount(char const *s, char c)
 	return (wc);
 }
 
-static char	*ft_strndup(char const *s, int size, size_t start)
+static char	**ft_freedom(char **splitter, int v)
 {
-	static int		j;
-	char			*p;
-
-	j = 0;
-	p = (char *) malloc(sizeof(char) * (size + 1));
-	if (!p)
-		return (NULL);
-	j = 0;
-	while (s[start] && j < size)
+	while (v--)
 	{
-		p[j] = s[start + j];
-		j++;
+		free(splitter[v]);
 	}
-	p[j] = '\0';
-	return (p);
+	free(splitter);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
@@ -91,12 +82,10 @@ char	**ft_split(char const *s, char c)
 	{
 		if (!ft_charcheck(s[index], c))
 		{
-			splitter[v] = ft_strndup(s, ft_charcount(s, c, index), index);
-			if (!splitter[v])
-				return (NULL);
-			v++;
-			while (!ft_charcheck(s[index], c) && s[index])
-				index++;
+			splitter[v] = ft_substr(s, index, ft_charcount(s, c, index));
+			if (!splitter[v++])
+				return (ft_freedom(splitter, v));
+			index += ft_charcount(s, c, index);
 		}
 		else
 			index++;
